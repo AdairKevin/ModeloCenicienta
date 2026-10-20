@@ -1,0 +1,79 @@
+/* Mobile first: todo se diseña para 375px; responsive.css amplía en pantallas grandes */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-text);
+  font-size: 1.1rem;
+  color: var(--color-text);
+  background: var(--color-bg);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+.hidden {
+  display: none;
+}
+
+.content {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 480px;
+  margin: 0 auto;
+  background:
+    radial-gradient(circle at 20% 10%, rgba(143, 184, 222, 0.25), transparent 40%),
+    radial-gradient(circle at 80% 60%, rgba(201, 211, 224, 0.35), transparent 45%),
+    var(--color-bg);
+}
+
+section {
+  padding: 56px 20px;
+  text-align: center;
+}
+
+h1,
+h2 {
+  font-family: var(--font-script);
+  color: var(--color-primary);
+  font-weight: 400;
+  line-height: 1.1;
+}
+section > h2 {
+  font-size: 2.6rem;
+  margin-bottom: 16px;
+}
+h3 {
+  font-family: var(--font-title);
+  color: var(--color-primary);
+  font-weight: 400;
+  letter-spacing: 2px;
+}
+
+/* Animación al bajar: main.js agrega .visible */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.9s ease, transform 0.9s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}

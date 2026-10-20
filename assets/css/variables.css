@@ -1,0 +1,15 @@
+@import url("https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cinzel:wght@400;600&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&display=swap");
+/* Paleta Cenicienta: azul cielo, azul real, plata y dorado suave. Edita aquí colores y tipografías */
+:root {
+  --color-primary: #2e4a7d;
+  --color-secondary: #8fb8de;
+  --color-accent: #d4b46a;
+  --color-plata: #c9d3e0;
+  --color-bg: #f2f7fc;
+  --color-card: #ffffff;
+  --color-text: #283a5c;
+  --font-script: "Great Vibes", cursive;
+  --font-title: "Cinzel", serif;
+  --font-text: "Cormorant Garamond", serif;
+  --sombra: 0 10px 30px rgba(46, 74, 125, 0.15);
+}

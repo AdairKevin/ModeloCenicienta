@@ -1,0 +1,571 @@
+/* ===== POLVO DE HADA ===== */
+.polvo-hada {
+  position: fixed;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  overflow: hidden;
+}
+.chispa {
+  position: absolute;
+  top: -10px;
+  color: var(--color-accent);
+  text-shadow: 0 0 6px rgba(255, 255, 255, 0.9);
+  animation: caer linear forwards;
+}
+@keyframes caer {
+  to {
+    transform: translate(var(--dx, 20px), 105vh) rotate(180deg);
+    opacity: 0;
+  }
+}
+
+/* ===== SOBRE ===== */
+.envelope-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 28px;
+  background:
+    radial-gradient(circle at 50% 35%, rgba(255, 255, 255, 0.9), transparent 60%),
+    linear-gradient(180deg, var(--color-secondary), var(--color-bg));
+  transition: opacity 1s, transform 1s;
+}
+.envelope-screen.fade-out {
+  opacity: 0;
+  transform: scale(1.15);
+  pointer-events: none;
+}
+.envelope-kicker {
+  font-family: var(--font-script);
+  font-size: 2.4rem;
+  color: var(--color-primary);
+}
+.envelope {
+  position: relative;
+  width: 300px;
+  height: 200px;
+  background: linear-gradient(135deg, #ffffff, var(--color-plata));
+  border: 1px solid var(--color-accent);
+  border-radius: 6px;
+  box-shadow: var(--sombra);
+  perspective: 800px;
+}
+.envelope-flap {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 60%;
+  background: linear-gradient(180deg, var(--color-secondary), #b9d3ec);
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
+  transform-origin: top;
+  transition: transform 0.9s ease;
+  filter: drop-shadow(0 3px 3px rgba(0, 0, 0, 0.2));
+}
+.envelope.open .envelope-flap {
+  transform: rotateX(180deg);
+}
+.wax-seal {
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 72px;
+  height: 72px;
+  border: 3px double rgba(255, 255, 255, 0.7);
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #e9d499, var(--color-accent) 60%, #a8873f);
+  color: #fff;
+  font-family: var(--font-title);
+  font-size: 1.3rem;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  animation: latido 2s ease-in-out infinite;
+}
+.envelope.open .wax-seal {
+  animation: none;
+  transform: translate(-50%, -50%) scale(0);
+  transition: transform 0.4s;
+}
+@keyframes latido {
+  50% {
+    box-shadow: 0 0 0 12px rgba(212, 180, 106, 0.25), 0 4px 12px rgba(0, 0, 0, 0.3);
+  }
+}
+.envelope-tooltip {
+  position: absolute;
+  top: -14px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 4px 14px;
+  border-radius: 20px;
+  background: var(--color-primary);
+  color: #fff;
+  font-family: var(--font-title);
+  font-size: 0.75rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  white-space: nowrap;
+  animation: flotar 1.6s ease-in-out infinite;
+}
+.envelope.open .envelope-tooltip {
+  display: none;
+}
+@keyframes flotar {
+  50% {
+    transform: translate(-50%, -6px);
+  }
+}
+.envelope-hint {
+  font-size: 0.95rem;
+  color: var(--color-primary);
+}
+
+/* ===== HOME ===== */
+.section-home {
+  position: relative;
+  padding: 0;
+}
+.home-img {
+  width: 100%;
+  height: auto;
+}
+.home-title {
+  padding: 28px 20px 8px;
+}
+.home-evento {
+  font-family: var(--font-title);
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  color: var(--color-accent);
+}
+.home-title h1 {
+  font-size: 4rem;
+}
+.home-frase {
+  font-style: italic;
+}
+
+/* ===== MÚSICA ===== */
+.music-card {
+  position: relative;
+  background: var(--color-card);
+  border: 1px solid var(--color-plata);
+  border-radius: 20px;
+  padding: 28px 20px 24px;
+  box-shadow: var(--sombra);
+}
+.music-icon {
+  font-size: 1.6rem;
+  color: var(--color-accent);
+}
+.song-title {
+  font-family: var(--font-title);
+  font-size: 1rem;
+}
+.artist-name {
+  font-size: 0.9rem;
+  opacity: 0.7;
+}
+.play-button {
+  margin: 14px auto;
+  width: 52px;
+  height: 52px;
+  border: none;
+  border-radius: 50%;
+  background: var(--color-primary);
+  color: #fff;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+.progress-container {
+  height: 4px;
+  background: var(--color-plata);
+  border-radius: 4px;
+  overflow: hidden;
+}
+.progress {
+  width: 0;
+  height: 100%;
+  background: var(--color-accent);
+}
+.music-float {
+  position: fixed;
+  right: 16px;
+  bottom: 16px;
+  z-index: 50;
+  width: 48px;
+  height: 48px;
+  border: none;
+  border-radius: 50%;
+  background: var(--color-primary);
+  color: #fff;
+  font-size: 1.3rem;
+  box-shadow: var(--sombra);
+  cursor: pointer;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s;
+}
+.music-float.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+.music-float.sonando {
+  animation: girar 4s linear infinite;
+}
+@keyframes girar {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ===== PALABRAS ===== */
+.ornamento {
+  display: block;
+  margin-bottom: 12px;
+  color: var(--color-accent);
+  letter-spacing: 6px;
+}
+.section-palabras p {
+  font-style: italic;
+  font-size: 1.2rem;
+}
+.section-palabras small {
+  display: block;
+  margin-top: 14px;
+  font-family: var(--font-title);
+  font-size: 0.85rem;
+}
+
+/* ===== INFO ===== */
+.info-marco {
+  position: relative;
+  padding: 36px 22px;
+  background: var(--color-card);
+  border: 1px solid var(--color-accent);
+  outline: 1px solid var(--color-accent);
+  outline-offset: -8px;
+  border-radius: 140px 140px 12px 12px;
+  box-shadow: var(--sombra);
+}
+.info-intro,
+.info-texto {
+  font-size: 1rem;
+}
+.info-marco h2 {
+  font-size: 3rem;
+  margin: 8px 0;
+}
+.info-nombre {
+  font-family: var(--font-title);
+  font-size: 1.3rem;
+  color: var(--color-primary);
+  margin-bottom: 20px;
+}
+.info-content {
+  margin-bottom: 16px;
+}
+.info-content b {
+  font-family: var(--font-title);
+  font-weight: 400;
+  font-size: 0.85rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--color-accent);
+}
+.info-content ul {
+  list-style: none;
+}
+.date-box {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin-top: 24px;
+  padding: 16px;
+  border-top: 1px solid var(--color-accent);
+  border-bottom: 1px solid var(--color-accent);
+  font-family: var(--font-title);
+  letter-spacing: 2px;
+}
+.date-box strong {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--color-primary);
+}
+
+/* ===== TIMER ===== */
+.section-timer {
+  background: linear-gradient(180deg, var(--color-primary), #1d3157);
+  color: #fff;
+}
+.section-timer h2 {
+  color: #fff;
+}
+.timer-sub {
+  font-family: var(--font-title);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  color: var(--color-accent);
+}
+.date-time {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  list-style: none;
+  margin-top: 16px;
+}
+.date-time li {
+  border: 1px solid rgba(212, 180, 106, 0.6);
+  border-radius: 50%;
+  aspect-ratio: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.time_number {
+  font-family: var(--font-title);
+  font-size: 1.5rem;
+}
+.time_txt {
+  font-size: 0.75rem;
+  opacity: 0.8;
+}
+
+/* ===== CALENDARIO ===== */
+.calendario {
+  max-width: 320px;
+  margin: 0 auto;
+  padding: 18px;
+  background: var(--color-card);
+  border-radius: 16px;
+  box-shadow: var(--sombra);
+}
+.cal-mes {
+  font-family: var(--font-title);
+  letter-spacing: 2px;
+  margin-bottom: 10px;
+  color: var(--color-primary);
+}
+.cal-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 4px;
+  font-size: 0.9rem;
+}
+.cal-grid .cal-dia-semana {
+  font-weight: 600;
+  color: var(--color-accent);
+}
+.cal-grid .cal-evento {
+  border-radius: 50%;
+  background: var(--color-primary);
+  color: #fff;
+  animation: latido 2s ease-in-out infinite;
+}
+.calendario-botones {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 8px;
+}
+
+/* ===== UBICACIONES ===== */
+.section-place {
+  display: grid;
+  gap: 20px;
+}
+.place-card {
+  background: var(--color-card);
+  border: 1px solid var(--color-plata);
+  border-radius: 20px;
+  padding: 28px 20px;
+  box-shadow: var(--sombra);
+}
+.place-card h2 {
+  font-size: 2.2rem;
+}
+.place-icon {
+  display: block;
+  font-size: 2rem;
+}
+.place-btn,
+.rsvp-btn {
+  display: inline-block;
+  margin-top: 16px;
+  padding: 12px 26px;
+  border: none;
+  border-radius: 30px;
+  background: var(--color-primary);
+  color: #fff;
+  font-family: var(--font-title);
+  font-size: 0.8rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+}
+.btn-secundario {
+  background: transparent;
+  border: 1px solid var(--color-primary);
+  color: var(--color-primary);
+}
+
+/* ===== CRONOGRAMA ===== */
+.cronograma {
+  position: relative;
+  list-style: none;
+  max-width: 340px;
+  margin: 0 auto;
+}
+.cronograma::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 1px;
+  background: var(--color-accent);
+}
+.cronograma li {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 28px;
+  padding: 12px 0;
+}
+.cronograma li::after {
+  content: "✦";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: var(--color-accent);
+  background: var(--color-bg);
+  line-height: 1;
+}
+.cronograma .hora {
+  text-align: right;
+  font-family: var(--font-title);
+  color: var(--color-primary);
+}
+.cronograma .actividad {
+  text-align: left;
+}
+
+/* ===== GALERÍA ===== */
+.section-slider {
+  padding: 0;
+}
+.slider-photo {
+  overflow: hidden;
+  transition: height 0.5s;
+}
+.slider-track {
+  display: flex;
+  align-items: flex-start;
+  transition: transform 0.8s ease;
+}
+.slider-track .img {
+  flex: 0 0 100%;
+  width: 100%;
+  height: auto;
+}
+
+/* ===== INFO ADICIONAL ===== */
+.info-block h2 {
+  font-size: 2.2rem;
+}
+.info-separator {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 70%;
+  margin: 28px auto;
+  color: var(--color-accent);
+}
+.info-separator::before,
+.info-separator::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--color-accent);
+}
+
+/* ===== INSTAGRAM ===== */
+.social-card {
+  padding: 32px 20px;
+  background: var(--color-card);
+  border-radius: 20px;
+  box-shadow: var(--sombra);
+}
+.social-icon svg {
+  width: 44px;
+  height: 44px;
+  color: var(--color-accent);
+}
+.instagram-user {
+  margin-top: 12px;
+  font-family: var(--font-title);
+  font-size: 1.2rem;
+  color: var(--color-primary);
+}
+.instagram-hashtag {
+  color: var(--color-accent);
+}
+
+/* ===== RSVP ===== */
+.section-message > b {
+  display: block;
+  font-family: var(--font-script);
+  font-size: 2.2rem;
+  font-weight: 400;
+  color: var(--color-primary);
+}
+.rsvp-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 24px;
+  padding: 24px 20px;
+  background: var(--color-card);
+  border-radius: 20px;
+  box-shadow: var(--sombra);
+}
+.rsvp-form input,
+.rsvp-form textarea,
+.rsvp-form .rsvp-btn {
+  width: 100%;
+  font: inherit;
+}
+.rsvp-form .rsvp-btn {
+  font-family: var(--font-title);
+  font-size: 0.8rem;
+}
+.rsvp-form input,
+.rsvp-form textarea {
+  padding: 12px;
+  border: 1px solid var(--color-plata);
+  border-radius: 10px;
+  background: var(--color-bg);
+}
+
+/* ===== FOOTER ===== */
+footer {
+  padding: 24px 20px;
+  text-align: center;
+  font-size: 0.85rem;
+  background: var(--color-primary);
+  color: #fff;
+}
+footer a {
+  color: var(--color-accent);
+}
