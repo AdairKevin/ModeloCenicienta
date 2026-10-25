@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Modelo Cenicienta</title>
+    <title>Invitación</title>
     <link rel="stylesheet" href="./assets/css/variables.css" />
     <link rel="stylesheet" href="./assets/css/layout.css" />
     <link rel="stylesheet" href="./assets/css/style.css" />
@@ -11,202 +11,212 @@
   </head>
 
   <body translate="no">
-    <!-- Polvo de hada (lo genera main.js) -->
-    <div class="polvo-hada" id="polvoHada" aria-hidden="true"></div>
+    <!-- Todos los textos se editan en contenido.json; aquí solo van {{variables}} -->
+    <template id="plantilla">
+      <!-- Polvo de hada (lo genera main.js) -->
+      <div class="polvo-hada" id="polvoHada" aria-hidden="true"></div>
 
-    <!-- 1. SOBRE DE BIENVENIDA -->
-    <div class="envelope-screen" id="envelopeScreen">
-      <p class="envelope-kicker">Había una vez…</p>
-      <div class="envelope">
-        <div class="envelope-flap"></div>
-        <button class="wax-seal" id="openEnvelope" aria-label="Abrir invitación">XV</button>
-        <span class="envelope-tooltip">Da click</span>
+      <!-- 1. SOBRE DE BIENVENIDA -->
+      <div class="envelope-screen" id="envelopeScreen">
+        <p class="envelope-kicker">{{sobre.frase}}</p>
+        <div class="envelope">
+          <div class="envelope-flap"></div>
+          <button class="wax-seal" id="openEnvelope" aria-label="{{sobre.botonAria}}">{{sobre.sello}}</button>
+          <span class="envelope-tooltip">{{sobre.tooltip}}</span>
+        </div>
+        <p class="envelope-hint">{{sobre.instruccion}}</p>
       </div>
-      <p class="envelope-hint">Toca el sello para abrir</p>
-    </div>
 
-    <main class="content hidden" id="invitationContent">
-      <!-- 2. HOME -->
-      <section class="section-home">
-        <img class="home-img" src="./assets/img/portada.svg" alt="Foto principal" />
-        <div class="home-title">
-          <p class="home-evento">Mis XV años</p>
-          <h1>Nombre</h1>
-          <p class="home-frase">Un sueño hecho realidad</p>
-        </div>
-      </section>
-
-      <!-- 3. MÚSICA -->
-      <section class="section-music reveal">
-        <div class="music-card">
-          <span class="music-icon" aria-hidden="true">♪</span>
-          <div class="song-title">A Dream Is a Wish Your Heart Makes</div>
-          <div class="artist-name">Cenicienta</div>
-          <button class="play-button" id="playPauseBtn" aria-label="Reproducir música">▶</button>
-          <div class="progress-container">
-            <div class="progress" id="progressBar"></div>
+      <main class="content hidden" id="invitationContent">
+        <!-- 2. HOME -->
+        <section class="section-home">
+          <img class="home-img" src="{{portada.foto}}" alt="{{portada.fotoAlt}}" />
+          <div class="home-title">
+            <p class="home-evento">{{portada.evento}}</p>
+            <h1>{{portada.nombre}}</h1>
+            <p class="home-frase">{{portada.frase}}</p>
           </div>
-          <audio id="music" loop src="./assets/music/cancion.mp3"></audio>
-        </div>
-      </section>
+        </section>
 
-      <!-- 4. PALABRAS / DEDICATORIA -->
-      <section class="section-palabras reveal">
-        <span class="ornamento" aria-hidden="true">✧ ✦ ✧</span>
-        <p>
-          Hija, desde el día en que llegaste a nuestras vidas supimos que eras
-          un sueño cumplido. Hoy, al llegar a tus quince años, deseamos que
-          nunca dejes de creer en la magia y en la bondad de tu corazón.
-        </p>
-        <small>— Con amor, tus papás</small>
-      </section>
-
-      <!-- 5. INFO FORMAL -->
-      <section class="section-info reveal">
-        <div class="info-marco">
-          <p class="info-intro">Por decreto del Reino, queda usted cordialmente invitado al</p>
-          <h2>Baile Real</h2>
-          <p class="info-texto">en honor a los XV años de</p>
-          <p class="info-nombre">Nombre completo</p>
-
-          <div class="info-content">
-            <b>Mis papás</b>
-            <ul>
-              <li>Nombre mamá</li>
-              <li>Nombre papá</li>
-            </ul>
+        <!-- 3. MÚSICA -->
+        {{#musica}}
+        <section class="section-music reveal">
+          <div class="music-card">
+            <span class="music-icon" aria-hidden="true">♪</span>
+            <div class="song-title">{{musica.cancion}}</div>
+            <div class="artist-name">{{musica.artista}}</div>
+            <button class="play-button" id="playPauseBtn" aria-label="{{musica.botonAria}}">▶</button>
+            <div class="progress-container">
+              <div class="progress" id="progressBar"></div>
+            </div>
+            <audio id="music" loop src="{{musica.archivo}}"></audio>
           </div>
-          <div class="info-content">
-            <b>Mis padrinos</b>
-            <ul>
-              <li>Nombre padrino</li>
-              <li>Nombre madrina</li>
-            </ul>
+        </section>
+        {{/musica}}
+
+        <!-- 4. PALABRAS / DEDICATORIA -->
+        {{#dedicatoria}}
+        <section class="section-palabras reveal">
+          <span class="ornamento" aria-hidden="true">✧ ✦ ✧</span>
+          <p>{{dedicatoria.texto}}</p>
+          <small>{{dedicatoria.firma}}</small>
+        </section>
+        {{/dedicatoria}}
+
+        <!-- 5. INFO FORMAL -->
+        {{#invitacion}}
+        <section class="section-info reveal">
+          <div class="info-marco">
+            <p class="info-intro">{{invitacion.intro}}</p>
+            <h2>{{invitacion.titulo}}</h2>
+            <p class="info-texto">{{invitacion.texto}}</p>
+            <p class="info-nombre">{{invitacion.nombreCompleto}}</p>
+
+            {{#invitacion.familia}}
+            <div class="info-content">
+              <b>{{titulo}}</b>
+              <ul>
+                {{#nombres}}<li>{{.}}</li>{{/nombres}}
+              </ul>
+            </div>
+            {{/invitacion.familia}}
+
+            <div class="date-box">
+              <span>{{invitacion.fecha.dia}}</span>
+              <strong>{{invitacion.fecha.fecha}}</strong>
+              <span>{{invitacion.fecha.hora}}</span>
+            </div>
           </div>
+        </section>
+        {{/invitacion}}
 
-          <div class="date-box">
-            <span>SÁBADO</span>
-            <strong>01 · MAY · 2027</strong>
-            <span>18:00 hrs</span>
+        <!-- 6. CUENTA REGRESIVA -->
+        {{#cuentaRegresiva}}
+        <section class="section-timer reveal">
+          <h2>{{cuentaRegresiva.titulo}}</h2>
+          <p class="timer-sub">{{cuentaRegresiva.subtitulo}}</p>
+          <ul class="date-time">
+            <li><div class="time_number" id="dias">0</div><div class="time_txt">{{cuentaRegresiva.dias}}</div></li>
+            <li><div class="time_number" id="horas">0</div><div class="time_txt">{{cuentaRegresiva.horas}}</div></li>
+            <li><div class="time_number" id="minutos">0</div><div class="time_txt">{{cuentaRegresiva.minutos}}</div></li>
+            <li><div class="time_number" id="segundos">0</div><div class="time_txt">{{cuentaRegresiva.segundos}}</div></li>
+          </ul>
+        </section>
+        {{/cuentaRegresiva}}
+
+        <!-- CALENDARIO -->
+        {{#calendario}}
+        <section class="section-calendario reveal">
+          <h2>{{calendario.titulo}}</h2>
+          <div class="calendario" id="calendario"></div>
+          <div class="calendario-botones">
+            <a class="place-btn" id="btnGoogleCal" href="#" target="_blank">{{calendario.botonGoogle}}</a>
+            <button class="place-btn btn-secundario" id="btnIcs" type="button">{{calendario.botonIcs}}</button>
           </div>
-        </div>
-      </section>
+        </section>
+        {{/calendario}}
 
-      <!-- 6. CUENTA REGRESIVA -->
-      <section class="section-timer reveal">
-        <h2>Antes de la medianoche</h2>
-        <p class="timer-sub">faltan</p>
-        <ul class="date-time">
-          <li><div class="time_number" id="dias">0</div><div class="time_txt">Días</div></li>
-          <li><div class="time_number" id="horas">0</div><div class="time_txt">Horas</div></li>
-          <li><div class="time_number" id="minutos">0</div><div class="time_txt">Min</div></li>
-          <li><div class="time_number" id="segundos">0</div><div class="time_txt">Seg</div></li>
-        </ul>
-      </section>
+        <!-- 7. UBICACIONES -->
+        {{#ubicaciones}}
+        <section class="section-place reveal">
+          {{#ubicaciones.lugares}}
+          <div class="place-card">
+            <span class="place-icon" aria-hidden="true">{{icono}}</span>
+            <h2>{{titulo}}</h2>
+            <p><b>{{hora}}</b> {{lugar}}</p>
+            <a class="place-btn" href="{{mapa}}" target="_blank">{{boton}}</a>
+          </div>
+          {{/ubicaciones.lugares}}
+        </section>
+        {{/ubicaciones}}
 
-      <!-- CALENDARIO -->
-      <section class="section-calendario reveal">
-        <h2>Reserva la fecha</h2>
-        <div class="calendario" id="calendario"></div>
-        <div class="calendario-botones">
-          <a class="place-btn" id="btnGoogleCal" href="#" target="_blank">Google Calendar</a>
-          <button class="place-btn btn-secundario" id="btnIcs" type="button">Apple / Outlook</button>
-        </div>
-      </section>
+        <!-- CRONOGRAMA -->
+        {{#cronograma}}
+        <section class="section-cronograma reveal">
+          <h2>{{cronograma.titulo}}</h2>
+          <ul class="cronograma">
+            {{#cronograma.actividades}}
+            <li><span class="hora">{{hora}}</span><span class="actividad">{{actividad}}</span></li>
+            {{/cronograma.actividades}}
+          </ul>
+        </section>
+        {{/cronograma}}
 
-      <!-- 7. UBICACIONES -->
-      <section class="section-place reveal">
-        <div class="place-card">
-          <span class="place-icon" aria-hidden="true">⛪</span>
-          <h2>Ceremonia</h2>
-          <p><b>18:00 hrs</b> Nombre y dirección del lugar</p>
-          <a class="place-btn" href="#" target="_blank">Ver ubicación</a>
-        </div>
-        <div class="place-card">
-          <span class="place-icon" aria-hidden="true">🏰</span>
-          <h2>Recepción</h2>
-          <p><b>19:30 hrs</b> Nombre y dirección del lugar</p>
-          <a class="place-btn" href="#" target="_blank">Ver ubicación</a>
-        </div>
-      </section>
+        <!-- GALERÍA -->
+        {{#galeria}}
+        <section class="section-slider">
+          <div class="slider-photo">
+            <figure class="slider-track" id="sliderTrack">
+              {{#galeria.fotos}}<img class="img" src="{{foto}}" alt="{{alt}}" />{{/galeria.fotos}}
+            </figure>
+          </div>
+        </section>
+        {{/galeria}}
 
-      <!-- CRONOGRAMA -->
-      <section class="section-cronograma reveal">
-        <h2>Cronograma</h2>
-        <ul class="cronograma">
-          <li><span class="hora">18:00</span><span class="actividad">Ceremonia</span></li>
-          <li><span class="hora">19:30</span><span class="actividad">Llegada al palacio</span></li>
-          <li><span class="hora">20:30</span><span class="actividad">Cena</span></li>
-          <li><span class="hora">21:30</span><span class="actividad">Vals</span></li>
-          <li><span class="hora">22:00</span><span class="actividad">Baile</span></li>
-          <li><span class="hora">00:00</span><span class="actividad">Campanadas de medianoche</span></li>
-        </ul>
-      </section>
+        <!-- 8. INFO ADICIONAL -->
+        <section class="section-info-adicional reveal">
+          {{#vestimenta}}
+          <div class="info-block">
+            <span class="place-icon" aria-hidden="true">{{vestimenta.icono}}</span>
+            <h2>{{vestimenta.titulo}}</h2>
+            <p>{{vestimenta.texto}}</p>
+          </div>
+          {{/vestimenta}}
+          {{#vestimenta}}{{#regalos}}<div class="info-separator" aria-hidden="true"><span>✦</span></div>{{/regalos}}{{/vestimenta}}
+          {{#regalos}}
+          <div class="info-block">
+            <span class="place-icon" aria-hidden="true">{{regalos.icono}}</span>
+            <h2>{{regalos.titulo}}</h2>
+            <p>{{regalos.texto}}</p>
+          </div>
+          {{/regalos}}
+        </section>
 
-      <!-- GALERÍA -->
-      <section class="section-slider">
-        <div class="slider-photo">
-          <figure class="slider-track" id="sliderTrack">
-            <img class="img" src="./assets/img/foto1.svg" alt="Foto 1" />
-            <img class="img" src="./assets/img/foto2.svg" alt="Foto 2" />
-            <img class="img" src="./assets/img/foto3.svg" alt="Foto 3" />
-          </figure>
-        </div>
-      </section>
+        <!-- INSTAGRAM -->
+        {{#instagram}}
+        <section class="social-section reveal">
+          <div class="social-card">
+            <span class="social-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>
+            </span>
+            <h2>{{instagram.titulo}}</h2>
+            <p>{{instagram.texto}}</p>
+            <div class="instagram-user">{{instagram.usuario}}</div>
+            <p class="instagram-hashtag">{{instagram.hashtag}}</p>
+            <a class="place-btn" href="{{instagram.link}}" target="_blank">{{instagram.boton}}</a>
+          </div>
+        </section>
+        {{/instagram}}
 
-      <!-- 8. INFO ADICIONAL -->
-      <section class="section-info-adicional reveal">
-        <div class="info-block">
-          <span class="place-icon" aria-hidden="true">👗</span>
-          <h2>Vestimenta</h2>
-          <p>Formal. Con cariño te pedimos reservar el color azul cielo para la quinceañera.</p>
-        </div>
-        <div class="info-separator" aria-hidden="true"><span>✦</span></div>
-        <div class="info-block">
-          <span class="place-icon" aria-hidden="true">🎁</span>
-          <h2>Mesa de regalos</h2>
-          <p>Tu presencia es el regalo más valioso. Si deseas tener un detalle, habrá lluvia de sobres.</p>
-        </div>
-      </section>
+        <!-- 9. CONFIRMACIÓN (RSVP por WhatsApp; el número va en confirmacion.whatsapp) -->
+        {{#confirmacion}}
+        <section class="section-message reveal">
+          <p>{{confirmacion.frase}}</p>
+          <b>{{confirmacion.destacado}}</b>
+          <form class="rsvp-form">
+            <h3>{{confirmacion.titulo}}</h3>
+            <input name="nombre" type="text" placeholder="{{confirmacion.campoNombre}}" required />
+            <input name="personas" type="number" min="1" placeholder="{{confirmacion.campoAsistentes}}" required />
+            <textarea name="mensaje" rows="3" placeholder="{{confirmacion.campoMensaje}}"></textarea>
+            <button type="submit" class="rsvp-btn">{{confirmacion.boton}}</button>
+          </form>
+        </section>
+        {{/confirmacion}}
 
-      <!-- INSTAGRAM -->
-      <section class="social-section reveal">
-        <div class="social-card">
-          <span class="social-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>
-          </span>
-          <h2>Captura el momento</h2>
-          <p>Que ningún instante de este cuento se pierda. Comparte tus fotos y etiqueta a la quinceañera.</p>
-          <div class="instagram-user">@usuario</div>
-          <p class="instagram-hashtag">#MisXV</p>
-          <a class="place-btn" href="#" target="_blank">Etiquetar en Instagram</a>
-        </div>
-      </section>
+        <!-- 10. FOOTER -->
+        <footer>
+          {{footer.texto}}
+          <a href="{{footer.link}}" target="_blank">{{footer.marca}}</a>
+          {{footer.anio}}
+        </footer>
+      </main>
 
-      <!-- 9. CONFIRMACIÓN (RSVP por WhatsApp) -->
-      <section class="section-message reveal">
-        <p>Los sueños se cumplen cuando se comparten</p>
-        <b>¡Te esperamos en el baile!</b>
-        <form class="rsvp-form" data-whatsapp="" data-evento="mis XV años">
-          <h3>Confirma tu asistencia</h3>
-          <input name="nombre" type="text" placeholder="Nombre completo" required />
-          <input name="personas" type="number" min="1" placeholder="Número de asistentes" required />
-          <textarea name="mensaje" rows="3" placeholder="Mensaje para la quinceañera (opcional)"></textarea>
-          <button type="submit" class="rsvp-btn">Confirmar por WhatsApp</button>
-        </form>
-      </section>
+      <!-- Botón flotante de música -->
+      {{#musica}}<button class="music-float" id="musicFloat" aria-label="{{musica.botonFlotanteAria}}">♪</button>{{/musica}}
 
-      <!-- 10. FOOTER -->
-      <footer>
-        Diseñado por
-        <a href="https://www.facebook.com/profile.php?id=61568997140138" target="_blank">Mirai</a>
-        @2026
-      </footer>
-    </main>
+      <script src="./assets/js/main.js"></script>
+    </template>
 
-    <!-- Botón flotante de música -->
-    <button class="music-float" id="musicFloat" aria-label="Pausar o reproducir música">♪</button>
-
-    <script src="./assets/js/main.js"></script>
+    <script src="./assets/js/motor.js"></script>
   </body>
 </html>

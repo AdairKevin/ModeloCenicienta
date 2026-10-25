@@ -1,0 +1,182 @@
+{
+  "_instrucciones": "Aquí se cambian TODOS los textos, fotos, links y datos de la invitación. Para ocultar una sección pon su clave en false (ejemplo: \"instagram\": false). Los textos aceptan <br> para saltos de línea. La fecha de evento.inicio la usan la cuenta regresiva y el calendario.",
+  "pagina": {
+    "titulo": "Modelo Cenicienta"
+  },
+  "evento": {
+    "inicio": "2027-05-01T18:00",
+    "duracionHoras": 7,
+    "tituloCalendario": "Mis XV años",
+    "lugarCalendario": "Nombre del salón"
+  },
+  "sobre": {
+    "frase": "Había una vez…",
+    "sello": "XV",
+    "tooltip": "Da click",
+    "instruccion": "Toca el sello para abrir",
+    "botonAria": "Abrir invitación"
+  },
+  "portada": {
+    "foto": "./assets/img/portada.svg",
+    "fotoAlt": "Foto principal",
+    "evento": "Mis XV años",
+    "nombre": "Nombre",
+    "frase": "Un sueño hecho realidad"
+  },
+  "musica": {
+    "archivo": "./assets/music/cancion.mp3",
+    "cancion": "A Dream Is a Wish Your Heart Makes",
+    "artista": "Cenicienta",
+    "botonAria": "Reproducir música",
+    "botonFlotanteAria": "Pausar o reproducir música"
+  },
+  "dedicatoria": {
+    "texto": "Hija, desde el día en que llegaste a nuestras vidas supimos que eras un sueño cumplido. Hoy, al llegar a tus quince años, deseamos que nunca dejes de creer en la magia y en la bondad de tu corazón.",
+    "firma": "— Con amor, tus papás"
+  },
+  "invitacion": {
+    "intro": "Por decreto del Reino, queda usted cordialmente invitado al",
+    "titulo": "Baile Real",
+    "texto": "en honor a los XV años de",
+    "nombreCompleto": "Nombre completo",
+    "familia": [
+      {
+        "titulo": "Mis papás",
+        "nombres": [
+          "Nombre mamá",
+          "Nombre papá"
+        ]
+      },
+      {
+        "titulo": "Mis padrinos",
+        "nombres": [
+          "Nombre padrino",
+          "Nombre madrina"
+        ]
+      }
+    ],
+    "fecha": {
+      "dia": "SÁBADO",
+      "fecha": "01 · MAY · 2027",
+      "hora": "18:00 hrs"
+    }
+  },
+  "cuentaRegresiva": {
+    "titulo": "Antes de la medianoche",
+    "subtitulo": "faltan",
+    "dias": "Días",
+    "horas": "Horas",
+    "minutos": "Min",
+    "segundos": "Seg"
+  },
+  "calendario": {
+    "titulo": "Reserva la fecha",
+    "botonGoogle": "Google Calendar",
+    "botonIcs": "Apple / Outlook"
+  },
+  "ubicaciones": {
+    "lugares": [
+      {
+        "icono": "⛪",
+        "titulo": "Ceremonia",
+        "hora": "18:00 hrs",
+        "lugar": "Nombre y dirección del lugar",
+        "mapa": "#",
+        "boton": "Ver ubicación"
+      },
+      {
+        "icono": "🏰",
+        "titulo": "Recepción",
+        "hora": "19:30 hrs",
+        "lugar": "Nombre y dirección del lugar",
+        "mapa": "#",
+        "boton": "Ver ubicación"
+      }
+    ]
+  },
+  "cronograma": {
+    "titulo": "Cronograma",
+    "actividades": [
+      {
+        "hora": "18:00",
+        "actividad": "Ceremonia"
+      },
+      {
+        "hora": "19:30",
+        "actividad": "Llegada al palacio"
+      },
+      {
+        "hora": "20:30",
+        "actividad": "Cena"
+      },
+      {
+        "hora": "21:30",
+        "actividad": "Vals"
+      },
+      {
+        "hora": "22:00",
+        "actividad": "Baile"
+      },
+      {
+        "hora": "00:00",
+        "actividad": "Campanadas de medianoche"
+      }
+    ]
+  },
+  "galeria": {
+    "fotos": [
+      {
+        "foto": "./assets/img/foto1.svg",
+        "alt": "Foto 1"
+      },
+      {
+        "foto": "./assets/img/foto2.svg",
+        "alt": "Foto 2"
+      },
+      {
+        "foto": "./assets/img/foto3.svg",
+        "alt": "Foto 3"
+      }
+    ]
+  },
+  "vestimenta": {
+    "icono": "👗",
+    "titulo": "Vestimenta",
+    "texto": "Formal. Con cariño te pedimos reservar el color azul cielo para la quinceañera."
+  },
+  "regalos": {
+    "icono": "🎁",
+    "titulo": "Mesa de regalos",
+    "texto": "Tu presencia es el regalo más valioso. Si deseas tener un detalle, habrá lluvia de sobres."
+  },
+  "instagram": {
+    "titulo": "Captura el momento",
+    "texto": "Que ningún instante de este cuento se pierda. Comparte tus fotos y etiqueta a la quinceañera.",
+    "usuario": "@usuario",
+    "hashtag": "#MisXV",
+    "link": "#",
+    "boton": "Etiquetar en Instagram"
+  },
+  "confirmacion": {
+    "frase": "Los sueños se cumplen cuando se comparten",
+    "destacado": "¡Te esperamos en el baile!",
+    "titulo": "Confirma tu asistencia",
+    "whatsapp": "",
+    "campoNombre": "Nombre completo",
+    "campoAsistentes": "Número de asistentes",
+    "campoMensaje": "Mensaje para la quinceañera (opcional)",
+    "boton": "Confirmar por WhatsApp",
+    "mensajeWhatsapp": {
+      "saludo": "¡Hola! Confirmo mi asistencia a mis XV años.",
+      "nombre": "Nombre",
+      "asistentes": "Número de asistentes",
+      "mensaje": "Mensaje"
+    }
+  },
+  "footer": {
+    "texto": "Diseñado por",
+    "marca": "Mirai",
+    "link": "https://www.facebook.com/profile.php?id=61568997140138",
+    "anio": "@2026"
+  }
+}
