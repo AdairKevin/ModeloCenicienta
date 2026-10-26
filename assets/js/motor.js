@@ -12,12 +12,17 @@
      {{?padres}} … {{/padres}}            → muestra el bloque UNA vez si la lista tiene elementos (sin repetir)
      {{@indice}} / {{@numero}} / {{@lado}} → dentro de una lista: número del elemento (1, 2, 3…),
                                             el mismo con dos cifras (01, 02…) y "left"/"right" alternados
+     {{@posicion}}                        → dentro de una lista: posición contando desde 0 (0, 1, 2…)
+     {{#@primero}} … {{/@primero}}        → dentro de una lista: solo en el primer elemento
+                                            (útil para la clase "active" de los carruseles)
 
    Los valores del JSON aceptan HTML sencillo (por ejemplo <br> o <em>).
    Para ocultar una sección completa, pon su clave en false en contenido.json,
    o agrega "mostrar": false dentro de ella para ocultarla sin borrar sus textos.
    Nota: el JSON se lee con fetch, así que abre la invitación con Live Server
    (VS Code) o desde Netlify; con doble clic al archivo no carga.
+   Al terminar, el motor vuelve a avisar los eventos DOMContentLoaded y load,
+   para que los scripts y librerías (como Bootstrap) que los esperan funcionen igual.
    ===================================================================== */
 (async function () {
   const plantilla = document.getElementById("plantilla");
@@ -105,7 +110,14 @@
         if (nodo.tipo === "?") return render(nodo.hijos, pila);
         if (Array.isArray(valor))
           return valor
-            .map((item, i) => render(nodo.hijos, [...pila, { "@indice": i + 1, "@numero": String(i + 1).padStart(2, "0"), "@lado": i % 2 ? "right" : "left" }, item]))
+            .map((item, i) => render(nodo.hijos, [...pila, {
+                  "@indice": i + 1,
+                  "@posicion": i,
+                  "@numero": String(i + 1).padStart(2, "0"),
+                  "@lado": i % 2 ? "right" : "left",
+                  "@primero": i === 0,
+                  "@ultimo": i === valor.length - 1,
+                }, item]))
             .join("");
         return render(nodo.hijos, typeof valor === "object" ? [...pila, valor] : pila);
       })
@@ -133,4 +145,9 @@
       }
     });
   }
+
+  /* La página ya había terminado de cargar antes de que existiera la invitación:
+     se vuelven a avisar los eventos para los scripts que los esperan */
+  document.dispatchEvent(new Event("DOMContentLoaded", { bubbles: true }));
+  if (document.readyState === "complete") window.dispatchEvent(new Event("load"));
 })();
